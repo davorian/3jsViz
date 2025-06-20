@@ -1,70 +1,186 @@
-# Getting Started with Create React App
+# Quantum Interactive Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based interactive demonstration of Quantum Stretch Film technology featuring 3D visualizations and immersive user experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Interactive 3D Visualizations**: Experience the four key properties of Quantum film through real-time 3D animations
+- **Puncture Resistance Demo**: Watch stress visualization and impact resistance testing
+- **Stretch Test Demo**: See the film's elasticity and stretching capabilities
+- **Cling Increase Demo**: Observe adhesion properties with surface interaction
+- **Retention Demo**: Experience long-term holding power visualization
+- **Audio-Visual Experience**: Wave visualizers and smooth animations
+- **Responsive Design**: Optimized for desktop and mobile devices
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React 18** - Frontend framework
+- **React Three Fiber** - 3D rendering with Three.js
+- **React Three Drei** - 3D helpers and utilities
+- **Framer Motion** - Smooth animations and transitions
+- **Three.js** - 3D graphics library
+- **GSAP** - Advanced animations (ready for integration)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. **Clone or navigate to the project directory:**
+   ```bash
+   cd quantum-interactive-demo
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Open your browser and visit:**
+   ```
+   http://localhost:3000
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Interactive Controls
 
-### `npm run eject`
+- **Navigation Panel**: Click on any of the four demo options:
+  - Puncture Resistance (wave icon)
+  - Stretch Up (line icon)
+  - Cling Increase (circle icon)
+  - Retention (square icon)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Play Controls**: Use the play/pause button to start/stop animations
+- **3D Scene**: 
+  - Mouse drag to rotate the view
+  - Scroll to zoom in/out
+  - Each demo shows different 3D visualizations
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Demo Descriptions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Puncture Resistance
+- Visualizes film's ability to withstand sharp objects
+- Shows stress distribution with particle effects
+- Demonstrates impact resistance with dynamic animations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Stretch Up
+- Shows film elasticity and stretching capabilities
+- Demonstrates material conservation through visual scaling
+- Includes stretch indicators for measurement reference
 
-## Learn More
+#### Cling Increase
+- Displays adhesion properties with surface interaction
+- Shows undulating surface effects when active
+- Demonstrates secure attachment capabilities
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Retention
+- Visualizes long-term holding power
+- Shows wrapped objects with retention bands
+- Demonstrates stability over time with subtle animations
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── QuantumDemo.js          # Main demo orchestrator
+│   ├── FilmVisualization.js    # 3D film visualizations
+│   ├── DemoControls.js         # Navigation and play controls
+│   ├── DemoInfo.js            # Information panel
+│   └── WaveVisualizer.js      # Audio wave visualization
+├── App.js                     # Main application component
+├── App.css                    # Global styles and theming
+└── index.js                   # Application entry point
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Customization
 
-### Analyzing the Bundle Size
+### Adding New Demos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **Update demo data** in `QuantumDemo.js`:
+   ```javascript
+   const demoData = {
+     newDemo: {
+       id: 'newDemo',
+       title: 'New Demo Title',
+       description: 'Demo description...',
+       icon: 'iconType',
+       color: '#d3b166',
+       animation: 'newAnimation'
+     }
+   };
+   ```
 
-### Making a Progressive Web App
+2. **Add visualization** in `FilmVisualization.js`:
+   ```javascript
+   case 'newDemo':
+     // Add your 3D visualization logic
+     return <YourNewVisualization />;
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. **Update icon types** in `DemoControls.js` if needed
 
-### Advanced Configuration
+### Styling Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The design follows the original Quantum brand guidelines:
+- **Primary Background**: `#011317` (dark blue-green)
+- **Secondary Background**: `#02161a` (slightly lighter)
+- **Accent Color**: `#d3b166` (gold)
+- **Text Color**: `#ecffff` (light cyan)
 
-### Deployment
+Modify `App.css` to customize colors, spacing, and animations.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Performance Optimization
 
-### `npm run build` fails to minify
+- 3D scenes are optimized for 60fps performance
+- Animations use `requestAnimationFrame` for smooth rendering
+- Particle systems are limited to maintain performance
+- Responsive design reduces complexity on mobile devices
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Browser Support
+
+- **Chrome 88+** (recommended)
+- **Firefox 85+**
+- **Safari 14+**
+- **Edge 88+**
+
+WebGL support is required for 3D visualizations.
+
+## Development
+
+### Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run eject` - Eject from Create React App
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+This creates an optimized build in the `build/` directory ready for deployment.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is created for demonstration purposes based on the Quantum Stretch Film website.
+
+## Acknowledgments
+
+- Original design inspired by quantumstretch.com
+- 3D visualizations powered by Three.js and React Three Fiber
+- Animations enhanced with Framer Motion
+- Icons and graphics adapted from the original Quantum brand assets
