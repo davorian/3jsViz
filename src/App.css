@@ -288,3 +288,22 @@ body {
   );
   animation: shimmer 2s infinite;
 }
+
+/* Custom scrollbar styling for demo navigation */
+.demo-navigation::-webkit-scrollbar {
+  width: 6px;
+}
+
+.demo-navigation::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.demo-navigation::-webkit-scrollbar-thumb {
+  background: rgba(211, 177, 102, 0.5);
+  border-radius: 3px;
+}
+
+.demo-navigation::-webkit-scrollbar-thumb:hover {
+  background: rgba(211, 177, 102, 0.7);
+}

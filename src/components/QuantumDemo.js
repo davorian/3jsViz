@@ -151,13 +151,48 @@ const demoData = {
     icon: 'lines-sphere',
     color: '#d3b166',
     animation: 'linesSphereTest'
+  },
+  jellyfish_medusae: {
+    id: 'jellyfish_medusae',
+    title: 'Particulate Medusae',
+    description: 'Soft-body jellyfish simulation with physics-based particle systems. This visualization recreates the organic, flowing movement of jellyfish bell contractions and tentacle undulations. The particle system uses spring constraints and damping forces to create realistic soft-body dynamics, similar to how jellyfish propel themselves through water. The bell pulsation creates vortex rings for efficient locomotion. Environmental particles simulate the underwater habitat. Adjustable parameters: Undulation Speed controls pulsation frequency, Particle Density affects simulation detail and tentacle count, Color Transitions modify the bioluminescent appearance.',
+    icon: 'jellyfish',
+    color: '#4a90e2',
+    animation: 'jellyfishMedusaeTest'
+  },
+
+  eclipse: {
+    id: 'eclipse',
+    title: 'Solar Eclipse',
+    description: 'A stunning solar eclipse visualization featuring a black central disc surrounded by a luminous corona. This celestial phenomenon recreates the breathtaking moment when the moon passes between Earth and the Sun, revealing the Sun\'s corona - the outermost layer of its atmosphere. The corona appears as multiple translucent rings of varying opacity, creating a realistic glow effect. The gentle rotation simulates the dynamic nature of solar plasma and magnetic field lines. Adjustable parameters: Undulation Speed controls corona rotation and plasma movement, Color Transitions modify the corona\'s spectral appearance from traditional orange to custom hues.',
+    icon: 'eclipse',
+    color: '#ff8c00',
+    animation: 'eclipseTest'
+  },
+
+  immune_system: {
+    id: 'immune_system',
+    title: 'Immune System Dynamics',
+    description: 'Interactive 2D canvas visualization of immune system cellular behavior with real-time parameter control. This simulation models immune cells as white particles that oscillate, collide, and interact based on key biological factors: Inflamaging (inflammatory aging), Protection Score (immune strength), Immune Age (system maturity), Cellular Damage (stress response), and Dot Size (cell scale). The particles exhibit emergent behaviors including collision detection, oscillatory movement, and trail effects that visualize immune system dynamics over time. Built with HTML5 Canvas for smooth 60fps animation and interactive slider controls.',
+    icon: 'immune',
+    color: '#00ff88',
+    animation: 'immuneSystemTest'
+  },
+
+  sphere_lines: {
+    id: 'sphere_lines',
+    title: 'Latitude/Longitude Sphere',
+    description: 'A sphere constructed entirely from latitude and longitude lines, creating a wireframe globe-like structure. Latitude lines run horizontally from the southern pole to the northern pole, while longitude lines run vertically from the 0-degree meridian. The number of lines is fully parameterizable, allowing you to create anything from a simple grid to a dense wireframe. Lines animate in with smooth tweening effects, and the entire structure rotates gently. This visualization demonstrates spherical coordinate systems used in geography, astronomy, and 3D graphics.',
+    icon: 'sphere-lines',
+    color: '#4a90e2',
+    animation: 'sphereLinesTest'
   }
 };
 
 const QuantumDemo = () => {
-  const [activeDemo, setActiveDemo] = useState('puncture');
+  const [activeDemo, setActiveDemo] = useState('jellyfish_medusae');
   const [showInfo, setShowInfo] = useState(true);
-  const [showControls, setShowControls] = useState(true); // Temporarily always show controls for debugging
+  const [showControls, setShowControls] = useState(false); // Toggle with Shift+C
   const [undulationSpeed, setUndulationSpeed] = useState(1.0);
   
   // New control states
@@ -168,6 +203,10 @@ const QuantumDemo = () => {
   const [colorTransition1, setColorTransition1] = useState(0.5); // Hue shift
   const [colorTransition2, setColorTransition2] = useState(0.8); // Saturation
   const [colorTransition3, setColorTransition3] = useState(0.7); // Brightness
+  
+  // Sphere lines parameters
+  const [latitudeLines, setLatitudeLines] = useState(10);
+  const [longitudeLines, setLongitudeLines] = useState(16);
   
   // Spirograph parameters
   const [spiralParams, setSpiralParams] = useState({
@@ -209,6 +248,8 @@ const QuantumDemo = () => {
     colorTransition1: 0.5,
     colorTransition2: 0.8,
     colorTransition3: 0.7,
+    latitudeLines: 10,
+    longitudeLines: 16,
     spiralParams: {
       spiral1: { R: 120, r: 30, d: 50, rotations: 8 },
       spiral2: { R: 80, r: 25, d: 40, rotations: 6 }
@@ -273,6 +314,8 @@ const QuantumDemo = () => {
     setColorTransition1(snapshot.config.colorTransition1 || defaultConfig.colorTransition1);
     setColorTransition2(snapshot.config.colorTransition2 || defaultConfig.colorTransition2);
     setColorTransition3(snapshot.config.colorTransition3 || defaultConfig.colorTransition3);
+    setLatitudeLines(snapshot.config.latitudeLines || defaultConfig.latitudeLines);
+    setLongitudeLines(snapshot.config.longitudeLines || defaultConfig.longitudeLines);
     setSpiralParams(snapshot.config.spiralParams || defaultConfig.spiralParams);
     
     // Restore camera state
@@ -315,6 +358,8 @@ const QuantumDemo = () => {
     setColorTransition1(defaultConfig.colorTransition1);
     setColorTransition2(defaultConfig.colorTransition2);
     setColorTransition3(defaultConfig.colorTransition3);
+    setLatitudeLines(defaultConfig.latitudeLines);
+    setLongitudeLines(defaultConfig.longitudeLines);
     setSpiralParams(defaultConfig.spiralParams);
     
     // Restore default camera state
@@ -364,6 +409,8 @@ const QuantumDemo = () => {
       colorTransition1,
       colorTransition2,
       colorTransition3,
+      latitudeLines,
+      longitudeLines,
       spiralParams,
       camera: cameraState
     };
@@ -382,7 +429,7 @@ const QuantumDemo = () => {
               near: 1,     // Close clipping plane
               far: 10000   // Extended far clipping plane to prevent disappearing when zoomed out
             }}
-            style={{ background: '#001122' }}
+            style={{ background: activeDemo === 'eclipse' ? '#000000' : '#001122' }}
             gl={{ antialias: true, alpha: false }}
           >
             <ambientLight intensity={0.2} />
@@ -401,6 +448,8 @@ const QuantumDemo = () => {
               colorTransition2={colorTransition2}
               colorTransition3={colorTransition3}
               spiralParams={spiralParams}
+              latitudeLines={latitudeLines}
+              longitudeLines={longitudeLines}
             />
             
             <OrbitControls
@@ -455,6 +504,10 @@ const QuantumDemo = () => {
               onColorTransition3Change={setColorTransition3}
               spiralParams={spiralParams}
               onSpiralParamsChange={setSpiralParams}
+              latitudeLines={latitudeLines}
+              onLatitudeLinesChange={setLatitudeLines}
+              longitudeLines={longitudeLines}
+              onLongitudeLinesChange={setLongitudeLines}
             />
           </div>
         )}

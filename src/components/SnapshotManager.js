@@ -179,6 +179,53 @@ const SnapshotManager = ({
             </g>
           </svg>
         );
+      case 'eclipse':
+        return (
+          <svg {...iconProps} viewBox="0 0 20 20">
+            {/* Sun corona rays */}
+            <g strokeDasharray="none" strokeWidth="1" opacity="0.7">
+              <line x1="10" y1="1" x2="10" y2="3" />
+              <line x1="10" y1="17" x2="10" y2="19" />
+              <line x1="1" y1="10" x2="3" y2="10" />
+              <line x1="17" y1="10" x2="19" y2="10" />
+              <line x1="3.5" y1="3.5" x2="4.9" y2="4.9" />
+              <line x1="15.1" y1="15.1" x2="16.5" y2="16.5" />
+              <line x1="16.5" y1="3.5" x2="15.1" y2="4.9" />
+              <line x1="4.9" y1="15.1" x2="3.5" y2="16.5" />
+            </g>
+            {/* Sun outline (partially visible) */}
+            <circle cx="10" cy="10" r="6" strokeDasharray="1 0.5" fill="none" strokeWidth="1.5" opacity="0.6" />
+            {/* Moon (black disc covering most of sun) */}
+            <circle cx="10" cy="10" r="5.5" fill="#d3b166" stroke="none" />
+            {/* Thin corona outline */}
+            <circle cx="10" cy="10" r="5.8" strokeDasharray="none" fill="none" strokeWidth="0.8" opacity="0.9" />
+          </svg>
+        );
+      case 'immune':
+        return (
+          <svg {...iconProps} viewBox="0 0 20 20">
+            {/* Central immune cell cluster */}
+            <circle cx="10" cy="10" r="3" strokeDasharray="1 0.5" fill="none" strokeWidth="1.5" />
+            {/* Surrounding immune cells */}
+            <circle cx="6" cy="6" r="1.5" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            <circle cx="14" cy="6" r="1.2" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            <circle cx="16" cy="10" r="1.3" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            <circle cx="14" cy="14" r="1.4" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            <circle cx="6" cy="14" r="1.1" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            <circle cx="4" cy="10" r="1.2" strokeDasharray="none" fill="none" strokeWidth="1" opacity="0.8" />
+            {/* Connection lines showing interactions */}
+            <line x1="10" y1="7" x2="6" y2="6" strokeDasharray="0.5 0.5" strokeWidth="0.8" opacity="0.5" />
+            <line x1="13" y1="10" x2="16" y2="10" strokeDasharray="0.5 0.5" strokeWidth="0.8" opacity="0.5" />
+            <line x1="10" y1="13" x2="6" y2="14" strokeDasharray="0.5 0.5" strokeWidth="0.8" opacity="0.5" />
+            {/* Activity indicators */}
+            <circle cx="8" cy="4" r="0.5" fill="#00ff88" stroke="none" opacity="0.9" />
+            <circle cx="12" cy="4" r="0.4" fill="#00ff88" stroke="none" opacity="0.7" />
+            <circle cx="16" cy="8" r="0.6" fill="#00ff88" stroke="none" opacity="0.8" />
+            <circle cx="16" cy="12" r="0.3" fill="#00ff88" stroke="none" opacity="0.6" />
+            <circle cx="8" cy="16" r="0.5" fill="#00ff88" stroke="none" opacity="0.8" />
+            <circle cx="4" cy="12" r="0.4" fill="#00ff88" stroke="none" opacity="0.7" />
+          </svg>
+        );
       default:
         return (
           <svg {...iconProps} viewBox="0 0 20 20">
